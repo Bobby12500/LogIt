@@ -18,7 +18,7 @@ type Search struct {
 	Year  string `json:"Year"`
 }
 
-func viewHandler(w http.ResponseWriter, r *http.Request) {
+func ViewHandler(w http.ResponseWriter, r *http.Request) {
 	req, _ := http.NewRequest("GET", "http://www.omdbapi.com/?i=tt3896198&apikey=564dc484&s=major", nil)
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
@@ -31,7 +31,7 @@ func viewHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Printf("unmarshal bokka %v", err)
 	}
-	path := path.Join("../../templates", "index.html")
+	path := path.Join(path.Dir("..\\..\\"), "templates", "index.html")
 	exec, err := template.ParseFiles(path)
 	if err != nil {
 		fmt.Print(err)
